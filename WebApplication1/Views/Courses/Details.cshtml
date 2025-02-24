@@ -1,0 +1,49 @@
+﻿@model WebApplication1.Models.Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h1 class="text-center my-4">Course Details</h1>
+
+<div class="card shadow-sm p-4">
+    <h4 class="mb-3">Course Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.degree)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.degree)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Mindegree)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Mindegree)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+    </dl>
+</div>
+
+<div class="mt-4">
+    @if (!User.IsInRole("Student"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

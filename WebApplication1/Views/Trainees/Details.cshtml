@@ -1,0 +1,43 @@
+﻿@model WebApplication1.Models.Trainee
+
+@{
+    ViewData["Title"] = "Trainee Details";
+}
+
+<h1 class="text-center my-4">Trainee Details</h1>
+
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <!-- Display the image -->
+            <img src="~/@Model.Image" class="img-fluid rounded-start" alt="Trainee Image" style="max-width: 100%; height: auto;" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Name:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                    <dt class="col-sm-3">Address:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+
+                    <dt class="col-sm-3">Grade:</dt>
+                    <dd class="col-sm-9">
+                        @{
+                            var grade = Model.Grade; // Updated property name to match model
+                            var colorClass = grade > 60 ? "text-success" : "text-danger";
+                        }
+                        <span class="@colorClass">@Html.DisplayFor(model => model.Grade)</span>
+                    </dd>
+
+                    <dt class="col-sm-3">Department:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Department.Name)</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+    </div>
+</div>

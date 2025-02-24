@@ -1,0 +1,103 @@
+﻿<div class="container mt-5">
+    <h1 class="display-4">Student Dashboard</h1>
+    <p>Welcome, @User.Identity.Name!</p>
+    <p class="lead">Explore available courses and view your department information.</p>
+</div>
+
+<div class="row justify-content-center my-4">
+    <div class="col-sm-6 col-md-4 mb-2">
+        <a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Index", "Courses")" aria-label="Navigate to Courses">
+            <i class="fas fa-book"></i> View Courses
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-4 mb-2">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="@Url.Action("Index", "Departments")" aria-label="Navigate to Department Information">
+            <i class="fas fa-building"></i> View Department
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-4 mb-2">
+        <a class="btn btn-outline-success btn-lg btn-block" href="@Url.Action("Index", "crsResults")" aria-label="View Grades">
+            <i class="fas fa-graduation-cap"></i> View Grades
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-4 mb-2">
+        <a class="btn btn-outline-info btn-lg btn-block" href="@Url.Action("Index", "Profile")" aria-label="View Student Profile">
+            <i class="fas fa-user"></i> Student Profile
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-4 mb-2">
+        <a class="btn btn-outline-warning btn-lg btn-block" href="@Url.Action("Index", "Events")" aria-label="View Upcoming Events">
+            <i class="fas fa-calendar-alt"></i> Upcoming Events
+        </a>
+    </div>
+</div>
+
+<!-- Search Bar -->
+<div class="container mb-4">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for courses..." id="searchBar" onkeyup="filterCourses()" aria-label="Search for courses">
+    </div>
+</div>
+
+<!-- Recommended Models Section -->
+<div class="container mt-5">
+    <h2 class="display-5">Recommended for You</h2>
+    <div class="row my-4">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recommended Courses</h5>
+                    <ul id="coursesList">
+                        <li><a href="@Url.Action("Details", "Courses", new { id = 1 })">Introduction to Web Development</a></li>
+                        <li><a href="@Url.Action("Details", "Courses", new { id = 2 })">Advanced Database Management</a></li>
+                        <li><a href="@Url.Action("Details", "Courses", new { id = 3 })">Machine Learning Fundamentals</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upcoming Assignments</h5>
+                    <ul>
+                        <li>Project: Web App UI - Due in 3 days</li>
+                        <li>Essay: Introduction to AI - Due in 5 days</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Department News</h5>
+                    <p>Don't miss the upcoming seminar on "Sustainable Engineering" next week!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Scholarship Opportunities</h5>
+                    <p>Apply for the "Student Excellence Scholarship" by the end of this month.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterCourses() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let courses = document.querySelectorAll('#coursesList li');
+        courses.forEach(course => {
+            let courseName = course.innerText.toLowerCase();
+            if (courseName.includes(input)) {
+                course.style.display = '';
+            } else {
+                course.style.display = 'none';
+            }
+        });
+    }
+</script>

@@ -1,0 +1,39 @@
+﻿@model WebApplication1.Models.crsResult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center my-4">Course Result Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">Course Result Details</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Trainee)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Trainee.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Degree)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Degree)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Course)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Course.Name)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+    </div>
+</div>

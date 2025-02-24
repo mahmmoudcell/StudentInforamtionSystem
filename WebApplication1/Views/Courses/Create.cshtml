@@ -1,0 +1,54 @@
+﻿@model WebApplication1.Models.Course
+
+@{
+    ViewData["Title"] = "Create Course";
+}
+
+<h1 class="text-center my-4">Create New Course</h1>
+
+<div class="card shadow-sm p-4">
+    <h4 class="mb-3">Course Details</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label font-weight-bold"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter course name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="degree" class="control-label font-weight-bold"></label>
+                    <input asp-for="degree" class="form-control" placeholder="Enter course degree" />
+                    <span asp-validation-for="degree" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Mindegree" class="control-label font-weight-bold"></label>
+                    <input asp-for="Mindegree" class="form-control" placeholder="Enter minimum degree" />
+                    <span asp-validation-for="Mindegree" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="departmentId" class="control-label font-weight-bold"></label>
+                    <select asp-for="departmentId" class="form-control" asp-items="ViewBag.departmentId">
+                        <option value="">Select Department</option>
+                    </select>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Create" class="btn btn-success btn-lg" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+

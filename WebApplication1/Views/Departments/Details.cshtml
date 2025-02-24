@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Models.Department
+
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<h1 class="text-center my-4">Department Details</h1>
+
+<div class="card border-info">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">Department Information</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Manager)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Manager)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-center">
+        @if (!User.IsInRole("Student"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        }
+        <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+    </div>
+</div>

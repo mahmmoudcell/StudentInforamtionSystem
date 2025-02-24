@@ -1,0 +1,69 @@
+﻿@model WebApplication1.Models.Account
+
+@{
+    ViewData["Title"] = "Edit Account";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Edit Account</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Name" class="form-label">Username</label>
+                            <input asp-for="Name" class="form-control" placeholder="Update your username" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3 position-relative">
+                            <label asp-for="PasswordHash" class="form-label">Password</label>
+                            <input asp-for="PasswordHash" type="password" class="form-control" id="passwordField" placeholder="Update your password" />
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+
+                            <!-- Eye Icon for Show/Hide Password -->
+                            <button type="button" class="btn btn-outline-secondary position-absolute"
+                                    style="top: 50%; right: 10px; transform: translateY(-50%); border: none; background: transparent; box-shadow: none; padding: 0;"
+                                    onclick="togglePasswordVisibility()">
+                                <i class="fas fa-eye" id="toggleEyeIcon" style="font-size: 20px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Index" class="btn btn-link">Back to Account List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to Toggle Password Visibility -->
+<script>
+    function togglePasswordVisibility() {
+        const passwordField = document.getElementById("passwordField");
+        const toggleEyeIcon = document.getElementById("toggleEyeIcon");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleEyeIcon.classList.remove("fa-eye");
+            toggleEyeIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            toggleEyeIcon.classList.remove("fa-eye-slash");
+            toggleEyeIcon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+<!-- Font Awesome for Eye Icon (Ensure Font Awesome is loaded) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

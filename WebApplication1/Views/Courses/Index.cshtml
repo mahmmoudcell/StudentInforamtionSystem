@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WebApplication1.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<!-- Dropdown Menu -->
+<div class="container mt-4 text-center">
+    <div class="dropdown d-inline-block">
+        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+        </button>
+        <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="@Url.Action("Index", "Home")" aria-label="Go to Home">Home</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Departments")" aria-label="Go to Departments">Departments</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "crsResults")" aria-label="Go to Course Results">Course Results</a>
+        </div>
+    </div>
+</div>
+
+<!-- Search Bar -->
+<div class="container mt-4 text-center">
+    <input type="text" id="searchBar" class="form-control w-50 mx-auto" placeholder="Search Courses" aria-label="Search Courses" onkeyup="filterCourses()" />
+</div>
+
+<h1 class="my-4 text-center">Courses List</h1>
+
+<!-- Create Button -->
+<p class="text-center mb-3">
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" class="btn btn-success btn-lg" role="button" aria-label="Create New Course">Create New Course</a>
+    }
+</p>
+
+<!-- Display Courses -->
+<div class="container mt-4">
+    <table class="table table-striped table-hover table-bordered table-responsive-md mx-auto" id="coursesList" style="max-width: 80%;">
+        <thead class="thead-dark text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+                <th>@Html.DisplayNameFor(model => model.First().degree)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Mindegree)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Department)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.degree)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Mindegree)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Department.Name)</td>
+                    <td class="text-center align-middle">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary mx-1" role="button" aria-label="Edit Course">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger mx-1" role="button" aria-label="Delete Course">Delete</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info mx-1" role="button" aria-label="View Course Details">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript for Filtering -->
+<script>
+    function filterCourses() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let rows = document.querySelectorAll('#coursesList tbody tr');
+        rows.forEach(row => {
+            let courseName = row.cells[0].innerText.toLowerCase();
+            if (courseName.includes(input)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>

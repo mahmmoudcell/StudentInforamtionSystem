@@ -1,0 +1,125 @@
+﻿@model IEnumerable<WebApplication1.Models.Account>
+
+@{
+    ViewData["Title"] = "Accounts List";
+}
+<!-- Dropdown Menu -->
+<div class="container mt-4">
+    <div class="dropdown">
+        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="@Url.Action("Index", "Home")">Home</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Departments")">Departments</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Instructors")">Instructors</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Trainees")">Trainees</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "crsResults")">Course Result</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Account")">Account</a>
+        </div>
+    </div>
+</div>
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Custom Styling -->
+<style>
+    .table-container {
+        width: 80%;
+        margin: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .table td {
+            background-color: #f7f7f7;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table .action-buttons a {
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .table .action-buttons .edit-btn {
+            background-color: #17a2b8; /* Light Blue */
+        }
+
+        .table .action-buttons .delete-btn {
+            background-color: #dc3545; /* Red */
+        }
+
+    .btn-create {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #28a745; /* Green */
+        color: #fff;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+        .btn-create:hover {
+            background-color: #218838;
+        }
+</style>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Password Hash</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model)
+            {
+                <tr>
+                    <td>@account.Name</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(account.PasswordHash))
+                        {
+                            @("********")  <!-- Mask the password hash -->
+                        }
+                        else
+                        {
+                            @("*****")  <!-- Fallback for empty password hash -->
+                        }
+                    </td>
+                    <td class="action-buttons">
+                        <a asp-action="Edit" asp-route-id="@account.Id" class="edit-btn" aria-label="Edit @account.Name's details">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@account.Id" class="delete-btn" aria-label="Delete @account.Name's account">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Create" class="btn-create" aria-label="Create a new account">Create New Account</a>
+</div>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,56 @@
+﻿@model WebApplication1.Models.Trainee
+
+@{
+    ViewData["Title"] = "Edit Trainee";
+}
+
+<h1 class="text-center my-4">Edit Trainee</h1>
+
+<h4 class="text-muted text-center">Update trainee details below:</h4>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Enter trainee's name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label">Image URL</label>
+                <input asp-for="Image" class="form-control" placeholder="Enter image URL" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">Address</label>
+                <input asp-for="Address" class="form-control" placeholder="Enter address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grade" class="control-label">Grade</label>
+                <input asp-for="Grade" class="form-control" placeholder="Enter grade" />
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label"></label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="@(ViewData["DepartmentId"] as SelectList)"></select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group text-center">
+                <input type="submit" value="Save Changes" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebApplication1.Models.Instructor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Dropdown Menu -->
+<div class="container mt-4">
+    <div class="dropdown">
+        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="@Url.Action("Index", "Home")">Home</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Departments")">Departments</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Instructors")">Instructors</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "Trainees")">Trainees</a>
+            <a class="dropdown-item" href="@Url.Action("Index", "crsResults")">Course Result</a>
+        </div>
+    </div>
+</div>
+
+<!-- Title and Button -->
+<div class="container text-center mb-4">
+    <h1 class="display-4">Instructors List</h1>
+    <p>
+        <a class="btn btn-success btn-lg" asp-action="Create">Create New</a>
+    </p>
+</div>
+
+<!-- Instructors Table -->
+<div class="container">
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Salary</th>
+                <th>Address</th>
+                <th>Course</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="~/@item.Image" alt="Instructor Image" class="img-thumbnail" style="max-width: 100px; height: auto;" />
+                        }
+                        else
+                        {
+                            <span>No Image</span>
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Salary) $</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Course.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Department.Name)</td>
+                    <td>
+                        <a class="btn btn-info btn-sm mx-1" asp-action="Edit" asp-route-id="@item.Id" role="button" aria-label="Edit Instructor">Edit</a>
+                        <a class="btn btn-primary btn-sm mx-1" asp-action="Details" asp-route-id="@item.Id" role="button" aria-label="View Details">Details</a>
+                        <a class="btn btn-danger btn-sm mx-1" asp-action="Delete" asp-route-id="@item.Id" role="button" aria-label="Delete Instructor">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>

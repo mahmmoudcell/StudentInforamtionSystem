@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Title -->
+    <title>@ViewData["Title"] - Ainshams</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/bootstrap.min.css")">
+
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/style.css")">
+
+    <!-- Responsive Styles -->
+    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css")">
+
+    <!-- Favicon -->
+    <link rel="icon" href="@Url.Content("~/Images/A.png")" type="image/gif">
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/css/jquery.mCustomScrollbar.min.css")">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="@Url.Content("~/css/owl.carousel.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/owl.theme.default.min.css")">
+
+    <!-- Custom CSS -->
+    <style type="text/css">
+        /* Transparent header */
+        .header_section {
+            background-color: transparent;
+        }
+
+        /* Transparent navbar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: transparent; /* No background */
+            border: none; /* Remove any border */
+        }
+
+        .logo {
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+            .logo img {
+                background-color: transparent; /* No background */
+                border: none; /* Remove any border */
+                width: 120px;
+                height: auto;
+            }
+
+        /* Background image */
+        .banner_section {
+            background-image: url('@Url.Content("~/Images/Img.png")'); /* Updated image path */
+            background-size: cover;
+            background-position: center;
+            padding: 40px 0; /* Adjust padding as needed */
+            color: #fff; /* Optional: ensure text is readable */
+        }
+
+        /* Responsive adjustments */
+       
+
+        .banner_section {
+            padding: 20px 0;
+        }
+
+        .banner_text {
+            font-size: 1.5rem; /* Adjust for smaller screens */
+        }
+
+        .banner_taital {
+            font-size: 2rem; /* Adjust for smaller screens */
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section Start -->
+    <div class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-light">
+                <!-- Centered Logo -->
+                <div class="logo">
+                    <img src="@Url.Content("~/Images/A1.png")" alt="Ainshams University Logo">
+                </div>
+            </nav>
+        </div>
+
+        <!-- Banner Section Start -->
+        <div class="banner_section layout_padding">
+            <div class="container">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <p class="banner_text">Ainshams University</p>
+                            <h1 class="banner_taital"><br>Computer Engineering</h1>
+                            <div class="read_bt">
+                                <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Enjoy</a>
+                            </div>
+                        </div>
+                        <!-- Additional carousel items can be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Section End -->
+    </div>
+
+    <!-- Main Content Section -->
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">© 2024 Ainshams University. All rights reserved.</p>
+            <a href="mailto:info@ainshams.edu.eg" class="text-white">info@ainshams.edu.eg</a> |
+            <a href="tel:+201022768505" class="text-white">+20 01022768505</a>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

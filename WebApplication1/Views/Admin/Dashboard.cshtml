@@ -1,0 +1,79 @@
+﻿<div class="container mt-5">
+    <h1 class="display-4">Admin Dashboard</h1>
+    <p>Welcome, @User.Identity.Name!</p>
+    <p class="lead">Explore our programs and find the right course for you.</p>
+</div>
+
+<div class="row justify-content-center my-4">
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Index", "Home")">Home</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="@Url.Action("Index", "Courses")">Courses</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="@Url.Action("Index", "Departments")">Departments</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="@Url.Action("Index", "Instructors")">Instructors</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="@Url.Action("Index", "crsResults")">Course Result</a>
+    </div>
+</div>
+
+<!-- Recommended Models Section -->
+<div class="container mt-5">
+    <h2 class="display-5">Recommended Actions</h2>
+    <div class="row my-4">
+        <!-- Recommended Courses to Review -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recommended Courses to Review</h5>
+                    <ul>
+                        <li><a href="@Url.Action("Details", "Courses", new { id = 101 })">Introduction to AI</a></li>
+                        <li><a href="@Url.Action("Details", "Courses", new { id = 102 })">Advanced Programming</a></li>
+                        <li><a href="@Url.Action("Details", "Courses", new { id = 103 })">Data Science Fundamentals</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Pending Approvals -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Approvals</h5>
+                    <ul>
+                        <li><a href="@Url.Action("PendingRequests", "Instructors")">New Instructor Applications</a></li>
+                        <li><a href="@Url.Action("PendingRequests", "Courses")">Course Proposals</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <!-- Department Performance -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Department Performance</h5>
+                    <p>Review the performance statistics for different departments to identify areas that need improvement.</p>
+                    <a class="btn btn-info btn-sm" href="@Url.Action("Performance", "Departments")">View Performance</a>
+                </div>
+            </div>
+        </div>
+        <!-- Upcoming Deadlines -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upcoming Deadlines</h5>
+                    <ul>
+                        <li>Finalize new course syllabus - Due in 3 days</li>
+                        <li>Submit department budget - Due in 5 days</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
